@@ -1,61 +1,70 @@
 <!DOCTYPE html>
+
 <head>
     <title>LP CATALOG</title>
-    <link rel="stylesheet" type="text/css" href="/LPCAT/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/LPCAT/font-awesome.min.css">
-    <script   src="/LPCAT/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/LPCAT//bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/LPCAT//style.css">
+    <script src="/LPCAT/bootstrap.bundle.min.js"></script>
+    <script src="/LPCAT/jquery-3.3.1.slim.min.js"></script>
 </head>
+
 <body>
-<div class="container py-5">
-    <!-- For Demo Purpose-->
-    <header class="text-center mb-5">
-      <h1 class="display-4 font-weight-bold">LP CATALOG</h1>
-    </header>
-  
-  
-    <!-- First Row [Prosucts]-->
-    <div class="row pb-5 mb-4">
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <!-- Card-->
-        <div class="card rounded shadow-sm border-0">
-          <div class="card-body p-4"><img src="https://bootstrapious.com/i/snippets/sn-cards/shoes-1_gthops.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
+    <div class="container py-5">
+        <!-- For Demo Purpose-->
+        <header class="text-center mb-5">
+            <h3 class="display-4 font-weight-bold">LP CATALOG</h3>
+        </header>
+        <!-- First Row [Prosucts]-->
+        <div id="productView" class="row pb-5 mb-4">
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <div class="card rounded shadow-sm border-0">
+                    <div class="card-body p-4"><img src="img/sleeve/1.png" alt=""
+                            class="img-fluid d-block mx-auto mb-3">
+                            <h6> <a class="text-dark">Finger sleeves</a></h6>
+                        </br>
+                        <div style="display: flex;">
+                        <h6 style="color: red;">₹ 100</h6>
+                        &nbsp; &nbsp;
+                        <h6 style="color: #7a7373;text-decoration: line-through;">₹ 100</h6>
+                        &nbsp; &nbsp;
+                        <h6 style="color: lightgreen;">25% OFF</h6>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <!-- Card-->
-        <div class="card rounded shadow-sm border-0">
-          <div class="card-body p-4"><img src="https://bootstrapious.com/i/snippets/sn-cards/shoes-2_g4qame.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <!-- Card-->
-        <div class="card rounded shadow-sm border-0">
-          <div class="card-body p-4"><img src="https://bootstrapious.com/i/snippets/sn-cards/shoes-3_rk25rt.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <!-- Card-->
-        <div class="card rounded shadow-sm border-0">
-          <div class="card-body p-4"><img src="https://bootstrapious.com/i/snippets/sn-cards/shoes-4_vgfjy9.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
-            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        
-          </div>
-        </div>
-      </div>
-    </div>
+        <script>
+
+           const main=async()=>{
+            let res=await fetch("/product.json");
+            let product =await res.json()
+            console.log(product)
+            let baseUrl="/LPCAT/img/"
+            let template="";
+            for(let i=0;i<product.length;i++){
+            let temp=`<div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <div class="card rounded shadow-sm border-0">
+                    <div onclick="window.location.href='/product.html?id=${product[i].id}'" class="card-body p-4 mouse" style="background: #edeaea;"><img src="${baseUrl+product[i].imageUrl}" alt=""
+                            class="img-fluid d-block mx-auto mb-3">
+                            <h6> <a class="text-dark">Finger sleeves</a></h6>
+                        </br>
+                        <div style="display: flex;">
+                        <h6 style="color: red;">₹ ${product[i].price-(product[i].discountPercent*product[i].price)/100}</h6>
+                        &nbsp; &nbsp;
+                        <h6 style="color: #7a7373;text-decoration: line-through;">₹ ${product[i].price}</h6>
+                        &nbsp; &nbsp;
+                        <h6 style="color: lightgreen;">${product[i].discountPercent}% OFF</h6>
+                    </div>
+                    </div>
+                </div>
+            </div>
+           `
+            template=template+temp
+        }
+        document.getElementById("productView").innerHTML=template;
+            }
+             main();
+        </script>
 </body>
+
 </html>
-  

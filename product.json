@@ -1,0 +1,13 @@
+[
+    {
+        "id":1,
+        "productName":"Finger Sleevs",
+        "price":25,
+        "quantity":1,
+        "discountPercent":20,
+        "imageUrl":"sleeve/1.png",
+        "imageSet":["sleeve/1.png","sleeve/sleeve1.png","sleeve/2.png"],
+        "des":"Test text"
+    }
+   
+]
