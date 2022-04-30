@@ -20,7 +20,7 @@
         <script>
 
            const main=async()=>{
-            let res=await fetch("LPCAT/product.json");
+            let res=await fetch("/LPCAT/product.json");
             let product =await res.json()
             console.log(product)
             let baseUrl="/LPCAT/img/"
