@@ -16,27 +16,11 @@
         </header>
         <!-- First Row [Prosucts]-->
         <div id="productView" class="row pb-5 mb-4">
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="card rounded shadow-sm border-0">
-                    <div class="card-body p-4"><img src="img/sleeve/1.png" alt=""
-                            class="img-fluid d-block mx-auto mb-3">
-                            <h6> <a class="text-dark">Finger sleeves</a></h6>
-                        </br>
-                        <div style="display: flex;">
-                        <h6 style="color: red;">₹ 100</h6>
-                        &nbsp; &nbsp;
-                        <h6 style="color: #7a7373;text-decoration: line-through;">₹ 100</h6>
-                        &nbsp; &nbsp;
-                        <h6 style="color: lightgreen;">25% OFF</h6>
-                    </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <script>
 
            const main=async()=>{
-            let res=await fetch("/product.json");
+            let res=await fetch("LPCAT/product.json");
             let product =await res.json()
             console.log(product)
             let baseUrl="/LPCAT/img/"
